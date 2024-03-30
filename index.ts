@@ -1,4 +1,5 @@
-import express from "express"
+// import express from "express"
+const express = require('express');
 import dotenv from 'dotenv'
 import { genSaltSync, hashSync } from "bcrypt";
 import { StreamChat } from "stream-chat";
@@ -21,7 +22,7 @@ interface User {
 
 const USERS: User[] = []
 
-app.post("/register", async (req, res) => {
+app.post("/register", async (req: any, res: any) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -69,7 +70,7 @@ app.post("/register", async (req, res) => {
     }
 })
 
-app.post("/login", (req, res) => {
+app.post("/login", (req: any, res: any) => {
     const { email, password } = req.body;
     const user = USERS.find((user) => user.email === email)
     const hashed_password = hashSync(password, salt)
